@@ -1,0 +1,27 @@
+{
+  "name": "zadanie_15_6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server",
+    "start-js": "babel script.js --watch --out-file script-compiled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aleksander1105/zadanie_15_6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aleksander1105/zadanie_15_6/issues"
+  },
+  "homepage": "https://github.com/Aleksander1105/zadanie_15_6#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "http-server": "^0.11.1"
+  }
+}
