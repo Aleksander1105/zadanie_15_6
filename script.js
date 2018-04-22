@@ -56,6 +56,9 @@ class Stopwatch {
 	clear() {
 		if (!this.running) {
 			this.running = false;
+			this.times.minutes = 0;
+			this.times.seconds = 0;
+			this.times.miliseconds = 0;
 		}
 	}
 }

@@ -1,0 +1,45 @@
+body {
+	background-color: purple;
+}
+
+.container {
+	width: 100%;
+	max-width: 80%;
+	text-align: center;
+	background: linear-gradient(#e66465, #9198e5);
+	margin: 0 auto;
+}
+
+.controls {
+	padding: 20px 0;
+}
+.button {
+	border: 1px solid purple;
+	padding: 10px;
+	border-radius: 5px;
+	margin: 10px 15px;
+	text-decoration: none;
+	color: purple;
+	background-color: #e66465;
+	box-shadow: 1px 2px;
+	font-weight: bold;
+}
+
+.stopwatch {
+	margin: 20px 0;
+	padding-bottom: 10px;
+	font-size: 52px;
+	color: purple;
+	font-weight: bold;
+
+}
+
+.button:hover {
+	background-color: #fff;
+}
+
+.button:active {
+	padding: 9px;
+    opacity: 1;
+    transition: 0s
+}
