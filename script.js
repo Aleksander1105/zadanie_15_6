@@ -1,17 +1,30 @@
-class Stopwatch {
+class Stopwatch extends React.Component {
 	constructor(display) {
-		this.running = false;
-		this.display = display;
-		this.reset();
-		this.print(this.times);
+		super(display);
+		this.state = {
+			running: false,
+			times = {
+				minutes: 0,
+				seconds: 0,
+				miliseconds: 0
+			},
+		};
+
+		this.start = this.start.bind(this);
+		this.step = this.step.bind(this);
+		this.stop = this.stop.bind(this);
+		this.reset = this.reset.bind(this);
+		this.print = this.print.bind(this.times);
 	}
 
 	reset() {
-		this.times = {
-			minutes: 0,
-			seconds: 0,
-			miliseconds: 0
-		};
+		this.setState({
+			times = {
+				minutes: 0,
+				seconds: 0,
+				miliseconds: 0
+			}
+		});
 	}
 
 	print() {
@@ -19,7 +32,7 @@ class Stopwatch {
 	}
 
 	format (times) {
-		return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
+		return (`${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`);
 	}
 
 	step() {
@@ -43,28 +56,36 @@ class Stopwatch {
 
 	start() {
 		if (!this.running) {
-			this.running = true;
+			this.setState ({running = true});
 			this.watch = setInterval(() => this.step(), 10);
 		}
 	}
 
 	stop() {
-		this.running = false;
+		this.setState ({running = false});
 		clearInterval(this.watch);
 	}
 
 	clear() {
 		if (!this.running) {
-			this.running = false;
+			this.setState ({running = false});
 			this.times.minutes = 0;
 			this.times.seconds = 0;
 			this.times.miliseconds = 0;
+			this.print();
 		}
 	}
 }
 
-const stopwatch = new Stopwatch(
-document.querySelector('.stopwatch'));
+render() {
+	<div className='container'>
+		<nav className="controls">
+			<a href='#' className='button' id='start' onClick={this.start}>Start</a>
+			<a href='#' className='button' id='stop' onClick={this.stop}>Stop</a>
+			<a href='#' className='button' id='reset' onClick={this.clear}>Reset</a>
+		</nav>
+	</div>
+}
 
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
@@ -83,3 +104,6 @@ function pad0(value) {
 	}
 	return result;
 };
+
+const stopwatch = React.createElement(Stopwatch);
+ReactDOM.render(stopwatch, document.getElementById('stopwatch'));
