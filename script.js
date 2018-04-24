@@ -15,6 +15,7 @@ class Stopwatch extends React.Component {
 		this.stop = this.stop.bind(this);
 		this.reset = this.reset.bind(this);
 		this.print = this.print.bind(this.times);
+		this.clear = this.clear.bind(this);
 	}
 
 	reset() {
@@ -41,7 +42,7 @@ class Stopwatch extends React.Component {
 		this.print();
 	}
 
-
+//jak tu ustawić stan?
 	calculate() {
 		this.times.miliseconds += 1;
 		if (this.times.miliseconds >= 100) {
@@ -78,24 +79,18 @@ class Stopwatch extends React.Component {
 }
 
 render() {
-	<div className='container'>
-		<nav className="controls">
-			<a href='#' className='button' id='start' onClick={this.start}>Start</a>
-			<a href='#' className='button' id='stop' onClick={this.stop}>Stop</a>
-			<a href='#' className='button' id='reset' onClick={this.clear}>Reset</a>
-		</nav>
-	</div>
+	return (
+		<div className='container'>
+			<nav className="controls">
+				<a href='#' className='button' id='start' onClick={this.start}>Start</a>
+				<a href='#' className='button' id='stop' onClick={this.stop}>Stop</a>
+				<a href='#' className='button' id='reset' onClick={this.clear}>Reset</a>
+			</nav>
+			<div className='stopwatch'>{this.format(this.times)}</div>
+			<ul className='results'></ul>
+		</div>
+	)	
 }
-
-let startButton = document.getElementById('start');
-startButton.addEventListener('click', () => stopwatch.start());
-
-let stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', () => stopwatch.stop());
-
-let clearButton = document.getElementById('clear');
-clearButton.addEventListener('click', () => stopwatch.clear());
-
 
 function pad0(value) {
 	let result = value.toString();
@@ -106,4 +101,4 @@ function pad0(value) {
 };
 
 const stopwatch = React.createElement(Stopwatch);
-ReactDOM.render(stopwatch, document.getElementById('stopwatch'));
+ReactDOM.render(stopwatch, document.getElementById('app'));
