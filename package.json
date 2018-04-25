@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server",
-    "start-js": "babel script.js --watch --out-file script-compiled.js"
+    "build": "npm-run-all -p build:*",
+    "build:js": "npx babel script.js --watch --out-file script-compiled.js -s",
+    "build:lib": "npx babel components -w --out-dir components-lib -s"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,12 @@
   "homepage": "https://github.com/Aleksander1105/zadanie_15_6#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "http-server": "^0.11.1"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.2"
   }
 }
