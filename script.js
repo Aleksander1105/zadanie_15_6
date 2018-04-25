@@ -44,6 +44,7 @@ class Stopwatch extends React.Component {
 
 //jak tu ustawić stan?
 	calculate() {
+		const times = this.state.times;
 		this.times.miliseconds += 1;
 		if (this.times.miliseconds >= 100) {
 			this.times.seconds += 1;
@@ -53,6 +54,9 @@ class Stopwatch extends React.Component {
 			this.times.minutes += 1;
 			this.times.seconds = 0;
 		}
+		this.setState({
+			times
+		});
 	}
 
 	start() {
@@ -100,5 +104,7 @@ function pad0(value) {
 	return result;
 };
 
-const stopwatch = React.createElement(Stopwatch);
-ReactDOM.render(stopwatch, document.getElementById('app'));
+ReactDOM.render(
+	<Stopwatch />,
+	document.getElementById('app')
+);
