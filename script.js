@@ -51,6 +51,7 @@ class Stopwatch {
 	stop() {
 		this.running = false;
 		clearInterval(this.watch);
+		this.results();
 	}
 
 	clear() {
@@ -59,7 +60,16 @@ class Stopwatch {
 			this.times.minutes = 0;
 			this.times.seconds = 0;
 			this.times.miliseconds = 0;
+			this.print();
 		}
+		console.log(this.times);
+	}
+
+	results() {
+		const box = document.querySelector('.results');
+		const result = document.createElement('li');
+		result.innerText = this.format(this.times);
+		box.appendChild(result);
 	}
 }
 

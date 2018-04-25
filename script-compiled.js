@@ -70,13 +70,27 @@ var Stopwatch = function () {
 		value: function stop() {
 			this.running = false;
 			clearInterval(this.watch);
+			this.results();
 		}
 	}, {
 		key: 'clear',
 		value: function clear() {
 			if (!this.running) {
 				this.running = false;
+				this.times.minutes = 0;
+				this.times.seconds = 0;
+				this.times.miliseconds = 0;
+				this.print();
 			}
+			console.log(this.times);
+		}
+	}, {
+		key: 'results',
+		value: function results() {
+			var box = document.querySelector('.results');
+			var result = document.createElement('li');
+			result.innerText = this.format(this.times);
+			box.appendChild(result);
 		}
 	}]);
 
