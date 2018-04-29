@@ -3,7 +3,7 @@ class Stopwatch extends React.Component {
 		super(display);
 		this.state = {
 			running: false,
-			times = {
+			times: {
 				minutes: 0,
 				seconds: 0,
 				miliseconds: 0
@@ -20,7 +20,7 @@ class Stopwatch extends React.Component {
 
 	reset() {
 		this.setState({
-			times = {
+			times: {
 				minutes: 0,
 				seconds: 0,
 				miliseconds: 0
@@ -42,7 +42,6 @@ class Stopwatch extends React.Component {
 		this.print();
 	}
 
-//jak tu ustawić stan?
 	calculate() {
 		const times = this.state.times;
 		this.times.miliseconds += 1;
@@ -61,46 +60,47 @@ class Stopwatch extends React.Component {
 
 	start() {
 		if (!this.running) {
-			this.setState ({running = true});
+			this.setState ({running: true});
 			this.watch = setInterval(() => this.step(), 10);
 		}
 	}
 
 	stop() {
-		this.setState ({running = false});
+		this.setState ({running: false});
 		clearInterval(this.watch);
 	}
 
 	clear() {
 		if (!this.running) {
-			this.setState ({running = false});
+			this.setState ({running: false});
 			this.times.minutes = 0;
 			this.times.seconds = 0;
 			this.times.miliseconds = 0;
 			this.print();
 		}
 	}
-}
 
-render() {
-	return (
-		<div className='container'>
-			<nav className="controls">
-				<a href='#' className='button' id='start' onClick={this.start}>Start</a>
-				<a href='#' className='button' id='stop' onClick={this.stop}>Stop</a>
-				<a href='#' className='button' id='reset' onClick={this.clear}>Reset</a>
-			</nav>
-			<div className='stopwatch'>{this.format(this.times)}</div>
-			<ul className='results'></ul>
-		</div>
-	)	
-}
-
-function pad0(value) {
-	let result = value.toString();
-	if (result.length < 2) {
-		result = '0' + result;
+	render() {
+		return (
+			<div className='container'>
+				<nav className="controls">
+					<a href='#' className='button' id='start' onClick={this.start}>Start</a>
+					<a href='#' className='button' id='stop' onClick={this.stop}>Stop</a>
+					<a href='#' className='button' id='reset' onClick={this.clear}>Reset</a>
+				</nav>
+				<div className='stopwatch'>{this.format(this.times)}</div>
+				<ul className='results'></ul>
+			</div>
+		)	
 	}
+
+}
+
+const pad0 = (value) => {
+	let result = value.toString();
+		if (result.length < 2) {
+			result = '0' + result;
+		}
 	return result;
 };
 
