@@ -83,7 +83,7 @@ class Stopwatch extends React.Component {
 	render() {
 		return (
 			<div className='container'>
-				<nav className="controls">
+				<nav className='controls'>
 					<a href='#' className='button' id='start' onClick={this.start}>Start</a>
 					<a href='#' className='button' id='stop' onClick={this.stop}>Stop</a>
 					<a href='#' className='button' id='reset' onClick={this.clear}>Reset</a>
@@ -102,7 +102,7 @@ const pad0 = (value) => {
 			result = '0' + result;
 		}
 	return result;
-};
+}
 
 ReactDOM.render(
 	<Stopwatch />,
