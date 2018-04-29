@@ -11,10 +11,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Stopwatch = function (_React$Component) {
 	_inherits(Stopwatch, _React$Component);
 
-	function Stopwatch(display) {
+	function Stopwatch() {
 		_classCallCheck(this, Stopwatch);
 
-		var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, display));
+		var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this));
 
 		_this.state = {
 			running: false,
@@ -29,7 +29,6 @@ var Stopwatch = function (_React$Component) {
 		_this.step = _this.step.bind(_this);
 		_this.stop = _this.stop.bind(_this);
 		_this.reset = _this.reset.bind(_this);
-		_this.print = _this.print.bind(_this.times);
 		_this.clear = _this.clear.bind(_this);
 		return _this;
 	}
@@ -46,11 +45,6 @@ var Stopwatch = function (_React$Component) {
 			});
 		}
 	}, {
-		key: 'print',
-		value: function print() {
-			this.display.innerText = this.format(this.times);
-		}
-	}, {
 		key: 'format',
 		value: function format(times) {
 			return pad0(times.minutes) + ':' + pad0(times.seconds) + ':' + pad0(Math.floor(times.miliseconds));
@@ -58,9 +52,10 @@ var Stopwatch = function (_React$Component) {
 	}, {
 		key: 'step',
 		value: function step() {
-			if (!this.running) return;
+			if (!this.state.running) {
+				return;
+			}
 			this.calculate();
-			this.print();
 		}
 	}, {
 		key: 'calculate',
@@ -84,7 +79,7 @@ var Stopwatch = function (_React$Component) {
 		value: function start() {
 			var _this2 = this;
 
-			if (!this.running) {
+			if (!this.state.running) {
 				this.setState({ running: true });
 				this.watch = setInterval(function () {
 					return _this2.step();
@@ -100,12 +95,11 @@ var Stopwatch = function (_React$Component) {
 	}, {
 		key: 'clear',
 		value: function clear() {
-			if (!this.running) {
+			if (!this.state.running) {
 				this.setState({ running: false });
 				this.times.minutes = 0;
 				this.times.seconds = 0;
 				this.times.miliseconds = 0;
-				this.print();
 			}
 		}
 	}, {
@@ -136,7 +130,7 @@ var Stopwatch = function (_React$Component) {
 				React.createElement(
 					'div',
 					{ className: 'stopwatch' },
-					this.format(this.times)
+					this.format(this.state.times)
 				),
 				React.createElement('ul', { className: 'results' })
 			);
