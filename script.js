@@ -91,9 +91,9 @@ class Stopwatch extends React.Component {
 
 const pad0 = (value) => {
 	let result = value.toString();
-		if (result.length < 2) {
+	if (result.length < 2) {
 			result = '0' + result;
-		}
+	}
 	return result;
 }
 
